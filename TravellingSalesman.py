@@ -49,6 +49,7 @@ def swap_nodes_in_array(nodes_list, i, j):
 def number_of_roads(number_of_nodes):
     return math.factorial(number_of_nodes - 1)
 
+
 nodes_array_distance = calculate_distance(nodes_array)
 record_distance = nodes_array_distance
 
