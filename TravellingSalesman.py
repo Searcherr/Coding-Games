@@ -1,6 +1,7 @@
 import sys
 import math
 import numpy as np
+from itertools import permutations
 
 # Auto-generated code below aims at helping you parse
 # the standard input according to the problem statement.
@@ -40,6 +41,25 @@ def create_graph(nodes_list):
     return graph
 
 
+def swap_nodes_in_array(nodes_list, i, j):
+    nodes_list[i], nodes_list[j] = nodes_list[j], nodes_list[i]
+    return nodes_list[i], nodes_list[j]
+
+
+def number_of_roads(number_of_nodes):
+    return math.factorial(number_of_nodes - 1)
+
 nodes_array_distance = calculate_distance(nodes_array)
-print(f"Distance = {nodes_array_distance}")
+record_distance = nodes_array_distance
+
+temp = permutations(nodes_array)
+print(temp)
+
+"""
+for _ in range(number_of_roads(n)):
+    swap_nodes_in_array()
+"""
+
 print(f"Your graph: \n {create_graph(nodes_array)}")
+print(f"Distance = {nodes_array_distance}")
+
