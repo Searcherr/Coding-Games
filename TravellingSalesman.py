@@ -18,6 +18,15 @@ for i in range(n):
 # To debug: print("Debug messages...", file=sys.stderr, flush=True)
 
 # You have to output a valid path
-print('x = ', x)
-print('y = ', y)
 print(nodes_array)
+
+
+def calculate_distance(nodes_list):
+    total_distance = 0
+    for n in range(len(nodes_list)-1):
+        current_distance = math.sqrt((nodes_list[n][0] - nodes_list[n+1][0]) ** 2 + ((nodes_list[n][1] - nodes_list[n+1][1]) ** 2))
+        total_distance += current_distance
+    return total_distance
+
+
+print(calculate_distance(nodes_array))
