@@ -38,8 +38,9 @@ def TSP_graph(graph, root_node_number):
         if i != root_node_number:
             vertex.append(i)
 
-    # storing min distance
+    # storing min distance and min path
     min_distance = maxsize
+    min_path = [root_node_number] + vertex + [root_node_number]
     # storing brute force
     next_permutation = permutations(vertex)
     for i in next_permutation:
@@ -49,18 +50,23 @@ def TSP_graph(graph, root_node_number):
         # compute current path distance
         k = root_node_number
         for j in i:
-            #print(f"Graph_index ({k}, {j}) distance {graph[k][j]}")
+            # adding distance to the next node
             current_distance += graph[k][j]
+            # moving column index to row's index
             k = j
+            # adding the index of current point to the current path
             current_path.append(j)
         # adding the road home
         current_distance += graph[k][root_node_number]
         current_path.append(root_node_number)
         print(current_path)
-        # updating minimum distance
-        min_distance = min(min_distance, current_distance)
+        # updating minimum distance and it's path
+        if current_distance < min_distance:
+            min_distance = min(min_distance, current_distance)
+            min_path = current_path
 
-    return min_distance
+
+    return min_distance, min_path
 
 
 n = int(input('Enter the number of nodes: '))
@@ -77,8 +83,10 @@ user_graph = create_graph(nodes_array)
 print(f"Your graph: \n {user_graph}")
 
 starting_node_index = 0
-resulr_distance = TSP_graph(user_graph, starting_node_index)
-print(f"TSP distance = {resulr_distance}")
+result_distance = TSP_graph(user_graph, starting_node_index)[0]
+result_path = TSP_graph(user_graph, starting_node_index)[1]
+print(f"TSP distance = {result_distance}")
+print(f"TSP path = {result_path}")
 
 test_graph = np.array([[1, 1],
                        [2, 2],
