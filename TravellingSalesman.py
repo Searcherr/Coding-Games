@@ -45,23 +45,25 @@ def TSP_graph(graph, root_node_number):
     for i in next_permutation:
 
         current_distance = 0
-
+        current_path = [root_node_number]
         # compute current path distance
         k = root_node_number
         for j in i:
-            print(f"Graph_index ({k}, {j}) distance {graph[k][j]}")
+            #print(f"Graph_index ({k}, {j}) distance {graph[k][j]}")
             current_distance += graph[k][j]
-
             k = j
+            current_path.append(j)
+        # adding the road home
         current_distance += graph[k][root_node_number]
-
-        # update minimum distance
+        current_path.append(root_node_number)
+        print(current_path)
+        # updating minimum distance
         min_distance = min(min_distance, current_distance)
 
     return min_distance
 
 
-n = int(input('Enter the number of nodes: '))  # This variables stores how many nodes are given
+n = int(input('Enter the number of nodes: '))
 nodes_array = np.zeros(shape=(n, 2))
 for i in range(n):
     # x: The x coordinate of the given node
@@ -84,3 +86,4 @@ test_graph = np.array([[1, 1],
                        [1, 1]])
 test_result = calculate_distance(test_graph)
 print(f"Test graph distance = {test_result}")
+#print(f"Road map: {}")
