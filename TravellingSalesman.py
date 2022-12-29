@@ -59,7 +59,7 @@ def TSP_graph(graph, root_node_number):
         # adding the road home
         current_distance += graph[k][root_node_number]
         current_path.append(root_node_number)
-        print(current_path)
+
         # updating minimum distance and it's path
         if current_distance < min_distance:
             min_distance = min(min_distance, current_distance)
@@ -88,10 +88,11 @@ result_path = TSP_graph(user_graph, starting_node_index)[1]
 print(f"TSP distance = {result_distance}")
 print(f"TSP path = {result_path}")
 
+"""
 test_graph = np.array([[1, 1],
                        [2, 2],
                        [3, 3],
                        [1, 1]])
 test_result = calculate_distance(test_graph)
 print(f"Test graph distance = {test_result}")
-#print(f"Road map: {}")
+"""
