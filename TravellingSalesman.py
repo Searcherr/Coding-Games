@@ -3,18 +3,6 @@ import numpy as np
 from itertools import permutations
 from sys import maxsize
 
-# Auto-generated code below aims at helping you parse
-# the standard input according to the problem statement.
-
-
-
-
-# Write an action using print
-# To debug: print("Debug messages...", file=sys.stderr, flush=True)
-
-# You have to output a valid path
-
-
 
 def calculate_distance(nodes_list):
     total_distance = 0
@@ -43,7 +31,7 @@ def number_of_roads(number_of_nodes):
     return math.factorial(number_of_nodes - 1)
 
 
-def travellingSalesmanProblem(graph, root_node_number):
+def TSP_graph(graph, root_node_number):
     # making a list of nodes' indexes apart from root node
     vertex = []
     for i in range(n):
@@ -51,26 +39,26 @@ def travellingSalesmanProblem(graph, root_node_number):
             vertex.append(i)
 
     # storing min distance
-    min_path = maxsize
+    min_distance = maxsize
     # storing brute force
     next_permutation = permutations(vertex)
     for i in next_permutation:
 
-        # store current Path weight(cost)
-        current_pathweight = 0
+        current_distance = 0
 
-        # compute current path weight
+        # compute current path distance
         k = root_node_number
         for j in i:
-            current_pathweight += graph[k][j]
+            print(f"Graph_index ({k}, {j}) distance {graph[k][j]}")
+            current_distance += graph[k][j]
 
             k = j
-        current_pathweight += graph[k][root_node_number]
+        current_distance += graph[k][root_node_number]
 
-        # update minimum
-        min_path = min(min_path, current_pathweight)
+        # update minimum distance
+        min_distance = min(min_distance, current_distance)
 
-    return min_path
+    return min_distance
 
 
 n = int(input('Enter the number of nodes: '))  # This variables stores how many nodes are given
@@ -83,23 +71,11 @@ for i in range(n):
 
 print(nodes_array)
 
-nodes_array_distance = calculate_distance(nodes_array)
-record_distance = nodes_array_distance
-
-temp = permutations(nodes_array)
-print(temp)
-
-"""
-for _ in range(number_of_roads(n)):
-    swap_nodes_in_array()
-"""
-users_graph = create_graph(nodes_array)
-
-print(f"Your graph: \n {users_graph}")
-print(f"Distance = {nodes_array_distance}")
+user_graph = create_graph(nodes_array)
+print(f"Your graph: \n {user_graph}")
 
 starting_node_index = 0
-resulr_distance = travellingSalesmanProblem(users_graph, starting_node_index)
+resulr_distance = TSP_graph(user_graph, starting_node_index)
 print(f"TSP distance = {resulr_distance}")
 
 test_graph = np.array([[1, 1],
