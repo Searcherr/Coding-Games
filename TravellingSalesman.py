@@ -62,7 +62,7 @@ def TSP_graph(graph, root_node_number):
 
         # updating minimum distance and it's path
         if current_distance < min_distance:
-            min_distance = min(min_distance, current_distance)
+            min_distance = current_distance
             min_path = current_path
 
 
